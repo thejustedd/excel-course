@@ -28,7 +28,7 @@ module.exports = {
   devtool: isDev ? 'source-map' : false,
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(__dirname, 'dist'),
     },
     compress: true,
     hot: true,
@@ -74,7 +74,6 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
-        // use: jsLoaders(),
         use: {
           loader: 'babel-loader',
           options: {
