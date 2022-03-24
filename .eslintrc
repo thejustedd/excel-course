@@ -9,7 +9,7 @@
     "node": true
   },
   "rules": {
-    "linebreak-style": 0,
+    "linebreak-style": "off",
     "require-jsdoc": "off",
     "operator-linebreak": "off",
     "max-len": [
