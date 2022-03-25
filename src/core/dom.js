@@ -13,6 +13,17 @@ class Dom {
     return this.$el.outerHTML.trim();
   }
 
+  set text(text) {
+    this.$el.textContent = text;
+  }
+
+  get text() {
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim();
+    }
+    return this.$el.textContent.trim();
+  }
+
   clear() {
     this.html('');
     return this;
@@ -52,13 +63,44 @@ class Dom {
     return this.$el.getBoundingClientRect();
   }
 
+  find(selector) {
+    return $(this.$el.querySelector(selector));
+  }
+
   findAll(selector) {
     return this.$el.querySelectorAll(selector);
   }
 
+  id(parse) {
+    if (parse) {
+      const coord = this.id().split(':');
+      return {
+        row: +coord[0],
+        col: +coord[1],
+      };
+    }
+
+    return this.data.id;
+  }
+
+  focus() {
+    this.$el.focus();
+    return this;
+  }
+
   css(styles = {}) {
     Object.keys(styles).forEach((key) => this.$el.style[key] = styles[key]);
-    return this.$el;
+    return this;
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className);
+    return this;
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className);
+    return this;
   }
 }
 
